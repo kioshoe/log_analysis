@@ -60,7 +60,7 @@ def query_results(query):
 
 # Formats and writes query results into a new text file.
 def file_output():
-    print ("Creating new text file...")
+    print("Creating new text file...")
     filename = input("Enter name of file:")
     filename = filename+".txt"
     try:
@@ -70,7 +70,7 @@ def file_output():
         sys.exit(0)
     print("Writing to file...")
     sys.stdout = log_output
-    print (question_1)
+    print(question_1)
     q1_results = query_results(query_1)
     for i in range(0, len(q1_results), 1):
         print(
@@ -88,7 +88,7 @@ def file_output():
     q3_results = query_results(query_3)
     if len(q3_results) > 0:
         for i in range(0, len(q3_results), 1):
-            print (
+            print(
               "     " + str(q3_results[i][0]) +
               " - " + str(q3_results[i][1]) + "% error rate")
     else:
