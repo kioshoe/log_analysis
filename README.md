@@ -21,12 +21,19 @@ _Created in partial fulfillment of Udacity's Full Stack Web Developer Nanodegree
 
 ## Running the Project
 1. In the command-line interface, launch the Vagrant VM from inside the Vagrant directory using:
-```$ vagrant up
-$ vagrant ssh```
+
+`$ vagrant up`
+
+`$ vagrant ssh`
+
 2. Change directory to /vagrant.
 3. Load the data using:
+
 `psql -d news -f newsdata.sql`
+
 4. Run the analysis tool using:
+
 `$ python3 log-analysis-tool.py`
+
 
 A text file report will be saved in the same directory.
