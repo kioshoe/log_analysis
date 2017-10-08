@@ -10,7 +10,7 @@ question_1 = "What are the most popular three articles of all time?"
 question_2 = "Who are the most popular authors of all time?"
 question_3 = "On which day(s) did more than 1% of requests lead to errors?"
 
-#Units for print function
+# Units for print function
 views = " views"
 err = "% error rate"
 
@@ -62,9 +62,10 @@ def query_results(query):
         print("Error: Could not complete query.")
         sys.exit(1)
 
+
 # Formats query results
 def print_results(results, unit):
-    if len(results) > 0: 
+    if len(results) > 0:
         for i in range(0, len(results), 1):
             print(
                 "    " + str(results[i][0]) +
@@ -72,6 +73,7 @@ def print_results(results, unit):
     else:
         print("None.")
     print(" ")
+
 
 # Writes query results into a new text file.
 def file_output():
