@@ -1,4 +1,4 @@
-# Python3
+#!/usr/bin/env Python3
 
 import sys
 import psycopg2
@@ -9,6 +9,10 @@ DBNAME = "news"
 question_1 = "What are the most popular three articles of all time?"
 question_2 = "Who are the most popular authors of all time?"
 question_3 = "On which day(s) did more than 1% of requests lead to errors?"
+
+#Units for print function
+views = " views"
+err = "% error rate"
 
 # Database queries
 query_1 = """
@@ -56,9 +60,20 @@ def query_results(query):
         return results
     except queryerror:
         print("Error: Could not complete query.")
+        sys.exit(1)
 
+# Formats query results
+def print_results(results, unit):
+    if len(results) > 0: 
+        for i in range(0, len(results), 1):
+            print(
+                "    " + str(results[i][0]) +
+                " - " + str(results[i][1]) + unit)
+    else:
+        print("None.")
+    print(" ")
 
-# Formats and writes query results into a new text file.
+# Writes query results into a new text file.
 def file_output():
     print("Creating new text file...")
     filename = input("Enter name of file:")
@@ -71,28 +86,11 @@ def file_output():
     print("Writing to file...")
     sys.stdout = log_output
     print(question_1)
-    q1_results = query_results(query_1)
-    for i in range(0, len(q1_results), 1):
-        print(
-          "     " + q1_results[i][0] +
-          " - " + str(q1_results[i][1]) + " views")
-    print(" ")
+    print_results(query_results(query_1), views)
     print(question_2)
-    q2_results = query_results(query_2)
-    for i in range(0, len(q2_results), 1):
-        print(
-          "     " + q2_results[i][0] +
-          " - " + str(q2_results[i][1]) + " views")
-    print(" ")
+    print_results(query_results(query_2), views)
     print(question_3)
-    q3_results = query_results(query_3)
-    if len(q3_results) > 0:
-        for i in range(0, len(q3_results), 1):
-            print(
-              "     " + str(q3_results[i][0]) +
-              " - " + str(q3_results[i][1]) + "% error rate")
-    else:
-        print("None.")
+    print_results(query_results(query_3), err)
     log_output.close()
     sys.stdout = sys.__stdout__
     print("File saved.")
