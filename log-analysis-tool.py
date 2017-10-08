@@ -54,8 +54,8 @@ def query_results(query):
         results = c.fetchall()
         db.close()
         return results
-    except:
-        print ("Error: Could not complete query.")
+    except queryerror:
+        print("Error: Could not complete query.")
 
 
 # Formats and writes query results into a new text file.
@@ -65,26 +65,26 @@ def file_output():
     filename = filename+".txt"
     try:
         log_output = open(filename, 'w')
-    except:
-        print ("Error. File could not be created.")
+    except fileerror:
+        print("Error. File could not be created.")
         sys.exit(0)
-    print ("Writing to file...")
+    print("Writing to file...")
     sys.stdout = log_output
     print (question_1)
     q1_results = query_results(query_1)
     for i in range(0, len(q1_results), 1):
-        print (
+        print(
           "     " + q1_results[i][0] +
           " - " + str(q1_results[i][1]) + " views")
-    print (" ")
-    print (question_2)
+    print(" ")
+    print(question_2)
     q2_results = query_results(query_2)
     for i in range(0, len(q2_results), 1):
-        print (
+        print(
           "     " + q2_results[i][0] +
           " - " + str(q2_results[i][1]) + " views")
-    print (" ")
-    print (question_3)
+    print(" ")
+    print(question_3)
     q3_results = query_results(query_3)
     if len(q3_results) > 0:
         for i in range(0, len(q3_results), 1):
@@ -92,10 +92,11 @@ def file_output():
               "     " + str(q3_results[i][0]) +
               " - " + str(q3_results[i][1]) + "% error rate")
     else:
-        print ("None.")
+        print("None.")
     log_output.close()
     sys.stdout = sys.__stdout__
-    print ("File saved.")
+    print("File saved.")
+
 
 if __name__ == '__main__':
     file_output()
