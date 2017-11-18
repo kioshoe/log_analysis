@@ -1,4 +1,4 @@
-# Movie Trailer Website
+# Log Analysis Tool
 
 A Python project to generate a text file report of queries made on a log database.
 
